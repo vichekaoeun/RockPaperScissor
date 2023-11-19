@@ -16,41 +16,63 @@ function getComputerChoice() {
 
 function playRound(playerSelection, computerSelection) {
     let p_choice = playerSelection.toLowerCase();
-    switch (playerSelection) {
+    switch (p_choice) {
         case "rock":
             if (computerSelection === "Scissors") {
-                return "You Win! Rock beats Scissors";
+                return 1;
             }
             else if (computerSelection === "Paper") {
-                return "You Lose! Paper beats Rock";
+                return -1;
             }
             else {
-                return "It's a tie!";
+                return 0;
             }
         case "paper":
             if (computerSelection === "Scissors") {
-                return "You Lose! Scissors beats Paper";
+                return -1;
             }
             else if (computerSelection === "Rock") {
-                return "You Win! Paper beats Rock";
+                return 1;
             }
             else {
-                return "It's a tie!";
+                return 0;
             }
         case "scissor":
             if (computerSelection === "Rock") {
-                return "You Lose! Rock beats Scissors";
+                return -1;
             }
             else if (computerSelection === "Paper") {
-                return "You Win! Scissors beat Paper";
+                return 1;
             }
             else {
-                return "It's a tie!";
+                return 0;
             }
     }
 
 }
 
-const playerSelection = prompt("Enter rock, paper or scissors");
-const computerSelection = getComputerChoice();
-console.log(playRound(playerSelection, computerSelection));
+function game() {
+    let c_score = 0;
+    let p_score = 0;
+    for (i = 0; i < 5; i++) {
+        const playerSelection = prompt("Enter rock, paper or scissors");
+        const computerSelection = getComputerChoice();
+        let point = playRound(playerSelection, computerSelection)
+        if (point === 1) {
+            p_score++;
+        }
+        else if (point === -1) {
+            c_score++;
+        }
+    }
+    if (p_score > c_score) {
+        return "You Win!";
+    }
+    else {
+        return "You Lose!";
+    }
+
+}
+
+
+console.log(game());
