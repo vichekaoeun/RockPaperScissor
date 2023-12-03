@@ -54,22 +54,56 @@ function playRound(playerSelection, computerSelection) {
 function game() {
     let c_score = 0;
     let p_score = 0;
-    for (i = 0; i < 5; i++) {
-        const playerSelection = prompt("Enter rock, paper or scissors");
-        const computerSelection = getComputerChoice();
-        let point = playRound(playerSelection, computerSelection)
-        if (point === 1) {
+
+    const rock = document.createElement('button');
+    const paper = document.createElement('button');
+    const scissor = document.createElement('button');
+
+    rock.textContent = "Rock";
+    paper.textContent = "Paper";
+    scissor.textContent = "Scissor";
+
+    const body = document.querySelector('.container');
+    body.appendChild(rock);
+    body.appendChild(paper);
+    body.appendChild(scissor);
+
+    const display = document.querySelector('.result');
+
+    rock.addEventListener('click', () => {
+        let result = playRound('rock', getComputerChoice());
+        updateScores(result);
+    });
+    paper.addEventListener('click', () => {
+        let result = playRound('paper', getComputerChoice());
+        updateScores(result);
+    });
+    scissor.addEventListener('click', () => {
+        let result = playRound('scissor', getComputerChoice());
+        updateScores(result);
+    });
+
+    function updateScores(result) {
+        if (result === 1) {
             p_score++;
-        }
-        else if (point === -1) {
+        } else if (result === -1) {
             c_score++;
         }
-    }
-    if (p_score > c_score) {
-        return "You Win!";
-    }
-    else {
-        return "You Lose!";
+
+
+        if (p_score >= 5 && c_score < p_score) {
+            display.textContent = "You Win!";
+            console.log(display.textContent);
+
+        } else if (c_score >= 5 && p_score < c_score) {
+            display.textContent = "You Lose!";
+            console.log(display.textContent);
+
+        } else {
+            display.textContent = "Continue";
+            console.log(display.textContent);
+
+        }
     }
 
 }

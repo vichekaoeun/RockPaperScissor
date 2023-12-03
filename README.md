@@ -1,2 +1,3 @@
 # RockPaperScissor
-A mini rock-paper-scissor game with computer generated input that runs on console (for now).
+A mini learning project.
+It is a rock-paper-scissor game with computer generated input that uses DOM manipulation.
